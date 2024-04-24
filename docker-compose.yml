@@ -1,0 +1,49 @@
+version: '3'
+
+services:
+  web:
+      container_name: webadmin
+      build:
+        context: .
+        dockerfile: ./dockerfile
+      ports:
+        - "3005:3000"
+      depends_on:
+        - db
+      volumes:
+        - ./public:/app/public
+        - ./public/images:/app/public/images
+        - ./public/pdfs:/app/public/pdfs
+      networks:
+        - mynetwork
+
+  db:
+    container_name: mysql
+    image: mysql:latest
+    restart: always
+    ports:
+      - "65514:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - database_data:/var/lib/mysql
+    networks:
+        - mynetwork
+
+  nginx:
+    container_name: nginx
+    image: nginx:latest
+    volumes:
+      - ./conf.d/nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - "80:80"
+    depends_on:
+      - web
+    networks:
+        - mynetwork
+volumes:
+  database_data:
+networks:
+  mynetwork:
