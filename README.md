@@ -13,6 +13,13 @@ MYSQL_PASSWORD=mysql_password_for_username
 Install project  with npm
  -  install docker 
 
+root .env
+
+```bash
+MYSQL_ROOT_PASSWORD=root_pass
+MYSQL_USER=user
+MYSQL_PASSWORD=pass
+```
 
  /api/.env
 ```bash
