@@ -13,6 +13,21 @@ MYSQL_PASSWORD=mysql_password_for_username
 Install project  with npm
  -  install docker 
 
+
+ /api/.env
+```bash
+SERVER_HOST="localhost"
+SERVER_PORT="3010"
+
+# mysql 
+
+DB_HOST="ip"
+DB_USER="root"
+DB_PASSWORD="pass"
+DB_DATABASE="database"
+DB_PORT=65514
+```
+
 then
 ```bash
   docker-compose up -d
