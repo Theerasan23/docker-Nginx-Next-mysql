@@ -9,13 +9,24 @@ services:
       ports:
         - "3005:3000"
       depends_on:
-        - db
+        - api
       volumes:
         - ./public:/app/public
         - ./public/images:/app/public/images
         - ./public/pdfs:/app/public/pdfs
       networks:
-        - mynetwork
+        - theerasan-network
+  api:
+      container_name: api
+      build:
+        context: .
+        dockerfile: ./dockerfile.api
+      ports:
+        - "3010:3010"
+      depends_on:
+        - db
+      networks:
+        - theerasan-network
 
   db:
     container_name: mysql
@@ -30,7 +41,7 @@ services:
     volumes:
       - database_data:/var/lib/mysql
     networks:
-        - mynetwork
+        - theerasan-network
 
   nginx:
     container_name: nginx
@@ -42,8 +53,9 @@ services:
     depends_on:
       - web
     networks:
-        - mynetwork
+        - theerasan-network
 volumes:
   database_data:
 networks:
-  mynetwork:
+  theerasan-network:
+    driver: bridge

@@ -2,4 +2,7 @@
 
 # dependencies
 /node_modules
+/api/node_modules
+/api/readme.md
+/.next
 .env
