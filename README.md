@@ -37,7 +37,7 @@ DB_PORT=65514
 
 then
 ```bash
-  docker-compose up -d
+  docker compose up -d
 ```
 
 or testing nextjs
