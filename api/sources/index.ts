@@ -46,6 +46,8 @@ app.get('/connection', async (req: Request, res: Response) => {
             'code': 'ECONNREFUSED',
             'syscall': 'connect',
             'address': process.env.DB_HOST,
+	    'user': process.env.DB_USER,
+	    'pass': process.env.DB_PASSWORD,
             'port': process.env.DB_PORT,
             'fatal': true
         }]
