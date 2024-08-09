@@ -33,7 +33,7 @@ services:
     image: mysql:latest
     restart: always
     ports:
-      - "65514:3306"
+      - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_USER: ${MYSQL_USER}
@@ -42,6 +42,19 @@ services:
       - database_data:/var/lib/mysql
     networks:
         - theerasan-network
+
+
+  phpmyadmin:
+    container_name: phpmyadmin
+    image: phpmyadmin/phpmyadmin:latest
+    restart: always
+    ports:
+      - "8080:80"
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    networks:
+      - theerasan-network
 
   nginx:
     container_name: nginx

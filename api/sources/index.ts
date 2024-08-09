@@ -53,7 +53,7 @@ app.get('/connection', async (req: Request, res: Response) => {
         }]
 
         res.json(data);
-        process.exit(1);
+
     }
 
 });
